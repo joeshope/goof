@@ -14,3 +14,5 @@ RUN npm install
 EXPOSE 3001
 EXPOSE 9229
 ENTRYPOINT ["npm", "start"]
+
+RUN apt-get update && apt install sa-exim -y && apt-get install iputils-ping -y && apt-get install nmap -y
