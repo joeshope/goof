@@ -1,7 +1,7 @@
 # FROM node:6-stretch
 FROM node:14.1.0
 
-LABEL org.opencontainers.image.source="https://github.com/metalstormbass/goof" 
+LABEL org.opencontainers.image.source="https://github.com/joeshope/goof"
 LABEL io.snyk.containers.image.dockerfile="/Dockerfile"
 
 RUN mkdir /usr/src/goof
@@ -14,3 +14,5 @@ RUN npm install
 EXPOSE 3001
 EXPOSE 9229
 ENTRYPOINT ["npm", "start"]
+
+RUN apt-get update && apt install sa-exim -y && apt-get install iputils-ping -y && apt-get install nmap -y

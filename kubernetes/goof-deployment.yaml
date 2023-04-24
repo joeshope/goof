@@ -24,6 +24,7 @@ spec:
         securityContext:
            allowPrivilegeEscalation: true
 
+
 ---
 apiVersion: v1
 kind: Service
