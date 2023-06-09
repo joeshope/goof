@@ -24,8 +24,8 @@ jobs:
          sudo npm install -g snyk
          snyk auth ${SNYK_TOKEN}
 
-    # Run Snyk Open Source
-    - name: Run Snyk Open Source
+    # Run Snyk Open Source Test
+    - name: Run Snyk Open Source Test
       run: |
          snyk test --severity-threshold=high --sarif > results.sarif
       continue-on-error: true
@@ -35,3 +35,9 @@ jobs:
       with:
         # Path to SARIF file relative to the root of the repository
         sarif_file: results.sarif
+        
+    # Run Snyk Open Source Monitor
+    - name: Run Snyk Open Source Monitor
+      run: |
+         snyk monitor --severity-threshold=high --org=joe.shope --project-name=github_action
+      continue-on-error: true
