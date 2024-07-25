@@ -1,0 +1,126 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nodejs-goof
+  title: NodeJS Goof Service
+  description: |
+    NodeJS service
+  labels:
+    tier: "3"
+  links:
+    - url: https://www.notion.so/roadie/nodejs-goof-e067465e56a14ae9b0507f8559f6aa26
+      title: Datadog
+      icon: dashboard
+  tags:
+    - test
+    - js
+    - demo
+  annotations:
+    github.com/project-slug: snyk-cs-goof-org/nodejs-goof
+    # The Sentry organization is stored in the app-config.yaml of the Backstage instance.
+    sentry.io/project-slug: nodejs-goof
+    cloud.google.com/function-ids: projects/roadie-dev-283705/locations/europe-west1/functions/test-fn-1
+    backstage.io/techdocs-ref: dir:.
+    pagerduty.com/service-id: PZDAG59
+    snyk.io/org-id: a0e0775e-2b17-4e57-8d85-6c8fbe5bc9a0
+    backstage.io/kubernetes-id: nodejs-goof
+    travis-ci.com/repo-slug: snyk-cs-goof-org/nodejs-goof
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/name=nodejs-goof'
+    opsgenie.com/component-selector: nodejs-goof-1
+    qameta.io/allure-project: value
+    newrelic.com/dashboard-guid: 'MzcwMjEwN3xWSVp8REFTSEJPQVJEfGRhOjkwMDk4'
+    sonarqube.org/project-key: snyk-cs-goof-org_nodejs-goof
+    datadoghq.com/tag-name: nodejs-goof
+    datadoghq.com/slo_tag: service:nodejs-goof
+    datadoghq.com/monitor_tags: nodejs-goof
+    backstage.io/code-coverage: enabled
+    endoflife.date/products: nodejs
+spec:
+  type: service
+  owner: group:snyk-cs-goof-org/cs-goof-back-end
+  lifecycle: experimental
+  system: nodeJSGoof
+  providesApis:
+    - python-goof
+  dependsOn:
+    - Component:python-goof-2
+    - Resource:sample-s3-bucket
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  title: Sentry JS
+  name: sentry-js
+  description: A JS client which communicates with the Sentry HTTP API.
+spec:
+  type: library
+  lifecycle: production
+  owner: group:roadiehq/marketing
+  system: nodeJSGoof
+  subcomponentOf: python-goof
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  title: Sample Service API
+  name: python-goof
+  description: The Sample Service API allows you to send errors to Rollbar or Sentry.
+  tags:
+    - unstable
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:snyk-cs-goof-org/cs-goof-back-end
+  system: nodeJSGoof
+  definition:
+    $text: https://github.com/snyk-cs-goof/nodejs-goof/blob/main/api-spec.yaml
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  title: Sample OpenApi Ref API
+  name: open-api-ref-sample
+  description: Sample catalog file referencing Petstore openapi spec
+  tags:
+    - unstable
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:snyk-cs-goof-org/cs-goof-back-end
+  system: nodeJSGoof
+  definition:
+    $text: https://petstore.swagger.io/v2/swagger.json
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sample-s3-bucket
+  description: The s3 bucket with the sample data in it. Doesn't really exist.
+spec:
+  type: s3-bucket
+  owner: team-alpha
+  system: nodeJSGoof
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: sample-domain
+  description: Sample domain which has stuff for demoing.
+spec:
+  owner: group:snyk-cs-goof-org/cs-goof-back-end
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  title: NodeJS Goof
+  name: nodeJSGoof
+  description: NodeJS Goof Service
+spec:
+  owner: group:snyk-cs-goof-org/cs-goof-back-end
+  domain: sample-domain
