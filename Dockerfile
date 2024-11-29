@@ -1,5 +1,5 @@
 # FROM node:6-stretch
-FROM node:14.1.0
+FROM node:14.19
 
 LABEL org.opencontainers.image.source="https://github.com/joeshope/goof" 
 LABEL io.snyk.containers.image.dockerfile="/Dockerfile"
