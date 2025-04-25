@@ -29,7 +29,7 @@ jobs:
     - name: Run Snyk Code
       run: |
          snyk code test --json | ./snyk-code-helper-nc.sh
-         snyk code test --sarif  > results.sarif 
+         snyk code test --sarif  --sarif-file-output=results.sarif 
          
       continue-on-error: true
     - name: Upload SARIF file
