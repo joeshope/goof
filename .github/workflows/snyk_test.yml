@@ -28,7 +28,9 @@ jobs:
     - name: Run Snyk Open Source Test
       run: |
          snyk test --severity-threshold=high --sarif-file-output=results.sarif
+         snyk-to-html -i snyk_test_results.json -o snyk_test_results.html
       continue-on-error: true
+      
     # Upload Results  
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v3
@@ -41,3 +43,9 @@ jobs:
       run: |
          snyk monitor --severity-threshold=high --project-name=github_action_demo
       continue-on-error: true
+
+    # Upload HTML file as artifact
+    - name: Upload HTML Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        path: snyk_test_results.html
