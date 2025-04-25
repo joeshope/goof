@@ -27,8 +27,7 @@ jobs:
     # Run Snyk Open Source Test
     - name: Run Snyk Open Source Test
       run: |
-         snyk test --severity-threshold=high --sarif-file-output=results.sarif
-         snyk test --json | snyk-to-html -o snyk_test_results.html
+         snyk test  --json --severity-threshold=high --sarif-file-output=results.sarif | snyk-to-html -o snyk_test_results.html
          snyk-to-html -i snyk_test_results.json -o snyk_test_results.html
       continue-on-error: true
       
