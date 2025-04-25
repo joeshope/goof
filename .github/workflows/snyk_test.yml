@@ -27,7 +27,7 @@ jobs:
     # Run Snyk Open Source Test
     - name: Run Snyk Open Source Test
       run: |
-         snyk test --severity-threshold=high --sarif --sarif-file-output=results.sarif
+         snyk test --severity-threshold=high --sarif-file-output=results.sarif
       continue-on-error: true
     # Upload Results  
     - name: Upload SARIF file
@@ -39,5 +39,5 @@ jobs:
     # Run Snyk Open Source Monitor
     - name: Run Snyk Open Source Monitor
       run: |
-         snyk monitor --severity-threshold=high --org=Afocante_WebStore --project-name=github_action
+         snyk monitor --severity-threshold=high --project-name=github_action_demo
       continue-on-error: true
