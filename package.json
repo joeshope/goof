@@ -43,7 +43,7 @@
     "st": "0.2.4",
     "stream-buffers": "^3.0.1",
     "tap": "^18.0.0",
-    "typeorm": "^0.3.14"
+    "typeorm": "^0.3.18"
   },
   "devDependencies": {
     "browserify": "^13.1.1",
